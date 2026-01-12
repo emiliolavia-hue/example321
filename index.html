@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unifying Operations: A Single Platform Proposal</title>
+    <meta name="description" content="A tailored proposal outlining the business case and ROI for consolidating disparate apps into a unified platform.">
+    <meta name="author" content="[REDACTED]">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "[REDACTED] Platform",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, iOS, Android",
+      "offers": {
+        "@type": "Offer",
+        "price": "[REDACTED]",
+        "priceCurrency": "[REDACTED]",
+        "description": "Per user per month."
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "[REDACTED]"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bc-energy-blue: #0072CE;
+            --bc-navy: #0A2240;
+            --bc-green: #28E289;
+            --bc-orange: #FF6B00;
+            --bc-light-grey: #F4F4F4;
+            --bc-charcoal: #282922;
+            --bc-white: #FFFFFF;
+            --spacing-1: 0.25rem;
+            --spacing-2: 0.5rem;
+            --spacing-4: 1rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+            --spacing-12: 3rem;
+            --spacing-16: 4rem;
+            --border-radius: 0.75rem;
+            --box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --transition-speed: 0.3s;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bc-white);
+            color: var(--bc-charcoal);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-6); }
+        section { padding: var(--spacing-16) 0; }
+        h1, h2, h3, h4 { color: var(--bc-navy); line-height: 1.2; margin-bottom: var(--spacing-4); }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+        
+        .section-title { text-align: center; margin-bottom: var(--spacing-12); }
+        .section-title .icon {
+            color: var(--bc-energy-blue);
+            width: 48px;
+            height: 48px;
+            margin: 0 auto var(--spacing-4);
+        }
+        .chip {
+            display: inline-block;
+            padding: var(--spacing-1) var(--spacing-2);
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            background-color: var(--bc-light-grey);
+            color: var(--bc-navy);
+        }
+
+        #hero {
+            background-color: var(--bc-navy);
+            color: var(--bc-white);
+            padding-top: var(--spacing-16);
+            padding-bottom: var(--spacing-16);
+            text-align: center;
+        }
+        #hero h1, #hero h2, #hero p { color: var(--bc-white); }
+        #hero h1 { font-size: 3rem; }
+        #hero .subhead { font-size: 1.25rem; max-width: 800px; margin: var(--spacing-4) auto var(--spacing-8); opacity: 0.9; }
+        .cta-buttons { display: flex; justify-content: center; gap: var(--spacing-4); flex-wrap: wrap; }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            text-decoration: none;
+            transition: all var(--transition-speed);
+            border: 2px solid transparent;
+            font-size: 1rem;
+            cursor: default;
+        }
+        .btn-primary { background-color: var(--bc-energy-blue); color: var(--bc-white); }
+        .btn-secondary { background-color: transparent; color: var(--bc-white); border-color: var(--bc-white); }
+        
+        .infographic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-12); align-items: start; }
+        .state-card { background-color: var(--bc-light-grey); padding: var(--spacing-8); border-radius: var(--border-radius); }
+        .state-card h3 { display: flex; align-items: center; gap: var(--spacing-4); }
+        .state-card ul { list-style: none; margin-top: var(--spacing-6); }
+        .state-card li { padding-left: 2rem; position: relative; margin-bottom: var(--spacing-4); }
+        .state-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        .state-card.current li::before { background-color: var(--bc-orange); }
+        .state-card.future li::before { background-color: var(--bc-green); }
+
+        .meddic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-6); }
+        .meddic-card { background-color: var(--bc-light-grey); padding: var(--spacing-6); border-radius: var(--border-radius); }
+        .meddic-card h4 { color: var(--bc-energy-blue); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: var(--spacing-2); }
+        .meddic-card h4 .icon { width: 20px; height: 20px; }
+        .meddic-card p, .meddic-card ul { font-size: 0.95rem; }
+        .meddic-card ul { list-style-position: inside; padding-left: var(--spacing-2); }
+        
+        #roi { background-color: var(--bc-light-grey); }
+        .calculator-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: var(--spacing-8);
+            background-color: var(--bc-white);
+            padding: var(--spacing-8);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        .calculator-input { margin-bottom: var(--spacing-6); }
+        .calculator-input label { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: var(--spacing-2); }
+        .calculator-input label span:last-child { color: var(--bc-energy-blue); }
+        input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; background: #e0e0e0; border-radius: 5px; outline: none; transition: opacity 0.2s; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; background: var(--bc-energy-blue); cursor: pointer; border-radius: 50%; }
+        .roi-results { text-align: center; }
+        .total-savings { font-size: 3.5rem; font-weight: 800; color: var(--bc-green); line-height: 1; }
+        #assumptions-container {
+            margin-top: var(--spacing-8);
+            background-color: #f9fafb;
+            border: 1px solid #e0e0e0;
+            padding: var(--spacing-6);
+            border-radius: var(--border-radius);
+        }
+        #assumptions-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-4);
+        }
+        #assumptions-list p { font-size: 0.85rem; }
+
+        .donut-chart-container { position: relative; width: 250px; height: 250px; margin: var(--spacing-6) auto; }
+        .donut-chart { transform: rotate(-90deg); border-radius: 50%; }
+        .donut-segment { fill: none; stroke-width: 20; transition: stroke-dashoffset 0.5s ease-in-out; }
+        .donut-legend { list-style: none; display: flex; justify-content: center; gap: var(--spacing-6); flex-wrap: wrap; margin-top: var(--spacing-4); }
+        .donut-legend li { display: flex; align-items: center; gap: var(--spacing-2); font-size: 0.9rem; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+        
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background-color: var(--bc-energy-blue); top: 0; bottom: 0; left: 24px; margin-left: -2px; }
+        .timeline-item { padding: 10px 40px; position: relative; background-color: inherit; width: 100%; box-sizing: border-box; }
+        .timeline-item::after { content: ''; position: absolute; width: 20px; height: 20px; right: auto; left: 15px; background-color: var(--bc-white); border: 4px solid var(--bc-orange); top: 24px; border-radius: 50%; z-index: 1; }
+        .timeline-content { padding: 20px 30px; background-color: var(--bc-light-grey); position: relative; border-radius: 6px; }
+        .timeline-content h3 { margin-top: 0; font-size: 1.2rem; color: var(--bc-navy); display: flex; justify-content: space-between; align-items: center; }
+        .timeline-content .step-number { font-size: 0.8rem; font-weight: 700; color: var(--bc-energy-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: block; }
+
+        #deal { background-color: var(--bc-light-grey); }
+        .proposal-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-8);
+            align-items: stretch;
+            margin-top: var(--spacing-8);
+        }
+        .proposal-card {
+            background-color: var(--bc-white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-8);
+            box-shadow: var(--box-shadow);
+            border: 3px solid transparent;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .proposal-card.deal {
+            border-color: var(--bc-energy-blue);
+            transform: scale(1.05);
+            position: relative;
+            z-index: 1;
+        }
+        .proposal-card-deal-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--bc-energy-blue);
+            color: var(--bc-white);
+            padding: var(--spacing-1) var(--spacing-4);
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .proposal-card .price-row { margin: var(--spacing-6) 0; }
+        .proposal-card .price { font-size: 2.5rem; font-weight: 800; color: var(--bc-navy); line-height: 1.1; }
+        .proposal-card .price-rrp { font-size: 1.2rem; font-weight: 500; color: #777; text-decoration: line-through; margin-bottom: var(--spacing-1); display: block; }
+        .savings-tag { background-color: #dcfce7; color: #166534; font-weight: 700; padding: var(--spacing-1) var(--spacing-4); border-radius: 999px; display: inline-block; margin-top: var(--spacing-2); }
+        .btn-outline { border: 2px solid var(--bc-navy); color: var(--bc-navy); background: transparent; width: 100%; margin-top: var(--spacing-2); }
+        
+        .cta-center { text-align: center; margin-top: var(--spacing-8); }
+        
+        @media (max-width: 1024px) {
+            .infographic-grid, .calculator-wrapper { grid-template-columns: 1fr; }
+        }
+        footer { background-color: var(--bc-navy); color: var(--bc-light-grey); padding: var(--spacing-8) 0; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <main>
+        <section id="hero">
+            <div class="container">
+                <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                    <div style="padding: 10px; border: 1px dashed white; border-radius: 5px;">
+                        <span style="color: white; font-size: 0.8rem;">[LOGO REDACTED]</span>
+                    </div>
+                    <span style="font-size: 2.5rem; font-weight: 300; color: var(--bc-energy-blue);">+</span>
+                    <div style="padding: 10px; border: 1px dashed white; border-radius: 5px;">
+                        <span style="color: white; font-size: 0.8rem;">[LOGO REDACTED]</span>
+                    </div>
+                </div>
+                <h1>Consolidating Systems into One Powerful Platform</h1>
+                <p class="subhead">A strategic proposal to eliminate app fatigue and data silos. Move from disconnected legacy tools and manual spreadsheets to a single, unified solution that scales with your ambition.</p>
+                <div class="cta-buttons">
+                    <span class="btn btn-primary" style="background-color: var(--bc-orange);">Watch Recorded Session 1</span>
+                    <span class="btn btn-primary" style="background-color: var(--bc-orange);">Watch Recorded Session 2</span>
+                    <span class="btn btn-primary">Calculate Potential Savings</span>
+                    <span class="btn btn-secondary">View Proposal Details</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="current-future">
+            <div class="container">
+                <div class="section-title">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+                    <h2>Current State vs. Future State</h2>
+                    <p>Transforming your operations from a complex web of disconnected apps to a streamlined, automated operation.</p>
+                </div>
+                <div class="infographic-grid">
+                    <div class="state-card current">
+                        <h3>Current State (System Overload)</h3>
+                        <ul>
+                            <li><strong>Too Many Systems:</strong> Juggling multiple disconnected software subscriptions is inefficient and costly.</li>
+                            <li><strong>Manual Planning:</strong> Scheduling is still done on spreadsheets outside of the main system, creating double entry.</li>
+                            <li><strong>Lack of Visibility:</strong> Cannot easily track site updates or resource location accurately.</li>
+                            <li><strong>Reporting Gaps:</strong> Legacy dashboards aren't delivering the real-time financial data needed for decision-making.</li>
+                            <li><strong>Customer Service:</strong> Difficulty keeping up with client updates as the organization grows.</li>
+                        </ul>
+                    </div>
+                    <div class="state-card future">
+                        <h3>Future State with Unified Platform</h3>
+                        <ul>
+                            <li><strong>One Truth:</strong> Replace 7+ systems with one platform. CRM, Scheduling, Tracking, and Job Management all in one place.</li>
+                            <li><strong>Smart Scheduling:</strong> Optimized routes and resource allocation with an intelligent assistant.</li>
+                            <li><strong>Real-Time Insight:</strong> Live tracking of field staff, status updates, and automated timesheets.</li>
+                            <li><strong>Advanced Data:</strong> Feed live operational data into existing dashboards for bespoke reporting.</li>
+                            <li><strong>Automated Comms:</strong> Professional tracking links and automated updates keep clients informed.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="business-case">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Discovery & Business Case Summary</h2>
+                    <p>Key drivers for this project based on our discovery session.</p>
+                </div>
+                <div class="meddic-grid">
+                    <div class="meddic-card">
+                        <h4>Metrics</h4>
+                        <p><strong>Team Size:</strong> [REDACTED] Employees.</p>
+                        <p><strong>Goal:</strong> Scale sustainably without adding admin headcount.</p>
+                        <p><strong>Consolidation:</strong> Replacing multiple legacy subscriptions.</p>
+                    </div>
+                    <div class="meddic-card">
+                        <h4>Decision Makers</h4>
+                        <p><strong>Stakeholders:</strong> [REDACTED]</p>
+                        <p><strong>Outcomes:</strong> Streamlined onboarding and a "single pane of glass" view.</p>
+                    </div>
+                    <div class="meddic-card">
+                        <h4>Current Limitations</h4>
+                        <ul>
+                            <li><strong>Non-Specific Tools:</strong> General automation tools not built for field service workflows.</li>
+                            <li><strong>Dashboard Issues:</strong> Existing attempts at reporting metrics are not functional.</li>
+                            <li><strong>Excel Dependency:</strong> High reliance on spreadsheets for core scheduling.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roi">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Estimated Financial Impact</h2>
+                    <p>Interactive tool to forecast the benefits of adoption.</p>
+                </div>
+                <div class="calculator-wrapper">
+                    <div class="calculator-inputs">
+                        <h3>Business Details</h3>
+                        <div class="calculator-input">
+                            <label><span>Field Staff</span><span id="engineers-value">10</span></label>
+                            <input type="range" id="engineers" min="5" max="50" value="10">
+                        </div>
+                        <div class="calculator-input">
+                            <label><span>Office Staff Avg. Salary</span><span id="officeSalary-value">[REDACTED]</span></label>
+                            <input type="range" id="officeSalary" min="20000" max="60000" value="30000" step="500">
+                        </div>
+                    </div>
+                    <div class="roi-results">
+                        <h3>Total Annual Business Benefit</h3>
+                        <p class="total-savings" id="total-savings">[REDACTED]</p>
+                        <div class="donut-chart-container">
+                            <svg class="donut-chart" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#e0e0e0" stroke-width="15"></circle>
+                                <circle id="donut-segment" class="donut-segment" cx="50" cy="50" r="40" stroke-dasharray="150 251.2" stroke="var(--bc-energy-blue)"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deal">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Proposal Options</h2>
+                    <p>Transparent options to support your growth.</p>
+                </div>
+                <div class="proposal-wrapper">
+                    <div class="proposal-card deal">
+                        <div class="proposal-card-deal-badge">Recommended</div>
+                        <h3>Option 1: Complete Package</h3>
+                        <p>Includes software, hardware, and data.</p>
+                        <div class="price-row">
+                            <span class="price-rrp">RRP: [REDACTED]</span>
+                            <span class="price">[REDACTED]</span>
+                        </div>
+                        <div class="savings-tag">Discount Applied</div>
+                        <ul>
+                            <li><strong>Full Software Access</strong></li>
+                            <li><strong>Mobile Hardware & Accessories</strong></li>
+                            <li><strong>Data & Connectivity</strong></li>
+                            <li><strong>Vehicle Tracking</strong></li>
+                        </ul>
+                        <span class="btn btn-primary">Select Option</span>
+                    </div>
+
+                    <div class="proposal-card">
+                        <h3>Option 2: Software Only</h3>
+                        <p>Core platform access only.</p>
+                        <div class="price-row">
+                            <span class="price-rrp">RRP: [REDACTED]</span>
+                            <span class="price">[REDACTED]</span>
+                        </div>
+                        <ul>
+                            <li><strong>Full Software Access</strong></li>
+                            <li><strong>Vehicle Tracking</strong></li>
+                        </ul>
+                        <span class="btn btn-outline">Select Option</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container" style="text-align: center;">
+                <h3 style="color: var(--bc-light-grey);">Ready to proceed?</h3>
+                <p>This proposal has been built specifically for your organization.</p>
+                <p style="opacity: 0.7; margin-top: var(--spacing-4);">&copy; 2026 [REDACTED]. All rights reserved.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const engineersInput = document.getElementById('engineers');
+            const engineersValue = document.getElementById('engineers-value');
+            const totalSavingsDisplay = document.getElementById('total-savings');
+
+            function updateCalculator() {
+                engineersValue.textContent = engineersInput.value;
+                totalSavingsDisplay.textContent = "[REDACTED]";
+            }
+
+            engineersInput.addEventListener('input', updateCalculator);
+            updateCalculator();
+        });
+    </script>
+</body>
+</html>
